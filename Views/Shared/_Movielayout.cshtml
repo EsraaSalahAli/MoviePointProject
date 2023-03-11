@@ -88,7 +88,7 @@
 						<span>Remember Me</span>
 					</div>
 					<div class="login-signup">
-						<span>SIGNUP</span>
+						<span><a asp-action="Registration" asp-controller="Account">SIGNUP</a></span>
 					</div>
 					<a href="#" class="theme-btn">LOG IN</a>
 					<span>Or Via Social</span>
@@ -1011,6 +1011,7 @@
 		<script src="/js/isotope.pkgd.min.js"></script>
 		<!-- main JS -->
 		<script src="/js/main.js"></script>
+		@await RenderSectionAsync("Scripts", required: false)
 	</body>
 
 </html>

@@ -1,4 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MoviePoint.Models;
 using MoviePoint.Repository;
+using System.Security.Principal;
 
 namespace MoviePoint
 {
@@ -11,12 +15,25 @@ namespace MoviePoint
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<IActorRepository, ActorRepository>(); 
+            builder.Services.AddDbContext<MoviePointContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("Esraa"));
+
+            });
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            }
+            ).AddEntityFrameworkStores<MoviePointContext>();
+
+            builder.Services.AddScoped<IActorRepository, ActorRepository>();
             builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
             builder.Services.AddScoped<IProducerRepository, ProducerRepository>();
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IActorMovieRepository, ActorMovieRepository>();
-
 
             var app = builder.Build();
 

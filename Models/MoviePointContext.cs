@@ -15,7 +15,7 @@ namespace MoviePoint.Models
         {
 
         }
-        public MoviePointContext(DbContextOptions options) : base(options)
+        public MoviePointContext(DbContextOptions<MoviePointContext> options) : base(options)
         {
 
         }
