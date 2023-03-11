@@ -1,3 +1,5 @@
+using MoviePoint.Repository;
+
 namespace MoviePoint
 {
     public class Program
@@ -8,6 +10,13 @@ namespace MoviePoint
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IActorRepository, ActorRepository>(); 
+            builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
+            builder.Services.AddScoped<IProducerRepository, ProducerRepository>();
+            builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+            builder.Services.AddScoped<IActorMovieRepository, ActorMovieRepository>();
+
 
             var app = builder.Build();
 
