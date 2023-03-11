@@ -22,7 +22,10 @@ namespace MoviePoint.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-RAGNM1O;Initial Catalog=MoviePointDB;Integrated Security=True;Encrypt=False");
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-RAGNM1O;Initial Catalog=MoviePointDB;Integrated Security=True;Encrypt=False");
+            //base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.UseSqlServer(@"Data source=HADEER_SALAH\SQL19; initial catalog=MoviePointDB;integrated security = true; trust server certificate =true");
             base.OnConfiguring(optionsBuilder);
         }
     }
