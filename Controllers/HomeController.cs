@@ -1,32 +1,66 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MoviePoint.Models;
+using MoviePoint.Repository;
+using MoviePoint.ViewModel;
 using System.Diagnostics;
 
 namespace MoviePoint.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+		IMovieRepository movieRepository;
+		IActorRepository actorRepository;
+		public HomeController
+			(IMovieRepository _MovieRepo, IActorRepository _ActorRepo)//inject
+		{
+			movieRepository = _MovieRepo; 
+			actorRepository = _ActorRepo; 
+		}
+		public IActionResult Home()
         {
-            _logger = logger;
+			List<MovieWithActorViewModel> movieWithActorViewModels = new List<MovieWithActorViewModel>();
+			List<Movie> movies = movieRepository.GetAll();
+			List<Actor> actors = actorRepository.GetAll();
+
+			//foreach (var itemMovie in movies)
+			//{
+			//	foreach (var itemVM in movieWithActorViewModels)
+			//	{
+			//		itemVM.MovieName = itemMovie.Name;
+			//		itemVM.MovieDescription = itemMovie.Description;
+			//		itemVM.MoviePicture = itemMovie.ImageUrl;
+			//	}
+
+			//}
+
+			//foreach (var itemActor in actors)
+			//{
+			//	foreach (var itemVM in movieWithActorViewModels)
+			//	{
+			//		itemVM.ActorPicture = itemActor.ProfilePicUrl;
+			//	}
+
+			//}
+
+			foreach (var itemVM in movieWithActorViewModels)
+			{
+				foreach (var itemMovie in movies)
+				{
+					itemVM.MovieName = itemMovie.Name;
+					itemVM.MovieDescription = itemMovie.Description;
+					itemVM.MoviePicture = itemMovie.ImageUrl;
+
+				}
+
+				foreach (var itemActor in actors)
+				{
+					itemVM.ActorPicture = itemActor.ProfilePicUrl;
+				}
+			}
+
+			return View(movieWithActorViewModels);
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+         
     }
 }
