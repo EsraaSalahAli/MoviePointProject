@@ -17,8 +17,8 @@ namespace MoviePoint
 
             builder.Services.AddDbContext<MoviePointContext>(option =>
             {
-                //option.UseSqlServer(builder.Configuration.GetConnectionString("Esraa"));
-                option.UseSqlServer(builder.Configuration.GetConnectionString("Hadeer Salah"));
+                option.UseSqlServer(builder.Configuration.GetConnectionString("Esraa"));
+                //option.UseSqlServer(builder.Configuration.GetConnectionString("Hadeer Salah"));
 
             });
 
@@ -51,7 +51,7 @@ namespace MoviePoint
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Home}/{id?}");
 
             app.Run();
         }
