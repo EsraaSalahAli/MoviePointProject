@@ -54,7 +54,7 @@
 					<div class="mainmenu">
 						<ul id="primary-menu">
 							<li><a class="active" asp-action="Home" asp-controller="Home">Home</a></li>
-							<li><a href="movies.html">Movies</a></li>
+							<li><a asp-action="Index" asp-controller="Movie">Movies</a></li>
 							<li><a href="celebrities.html">CelebritiesList</a></li>
 							<li><a href="top-movies.html">Top Movies</a></li>
 							<li><a href="blog.html">News</a></li>
@@ -140,6 +140,19 @@
 			</div>
 		</div>
 	</footer>
+	<script src="/js/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="/js/bootstrap.min.js"></script>
+	<!-- Slick nav JS -->
+	<script src="/js/jquery.slicknav.min.js"></script>
+	<!-- owl carousel JS -->
+	<script src="/js/owl.carousel.min.js"></script>
+	<!-- Popup JS -->
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<!-- Isotope JS -->
+	<script src="/js/isotope.pkgd.min.js"></script>
+	<!-- main JS -->
+	<script src="/js/main.js"></script>
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

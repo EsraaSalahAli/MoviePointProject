@@ -18,7 +18,9 @@ namespace MoviePoint
             builder.Services.AddDbContext<MoviePointContext>(option =>
             {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("Esraa"));
-                //option.UseSqlServer(builder.Configuration.GetConnectionString("Hadeer Salah"));
+                // option.UseSqlServer(builder.Configuration.GetConnectionString("Hadeer Salah"));
+                //option.UseSqlServer(builder.Configuration.GetConnectionString("Ghada"));
+
 
             });
 

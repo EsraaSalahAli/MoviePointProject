@@ -38,5 +38,13 @@ namespace MoviePoint.Repository
             context.Actor_Movies.Remove(org);
             context.SaveChanges();
         }
-    }
+
+
+		public List<int> ActorById(int id)
+		{
+			return context.Actor_Movies.Where(m => m.MovieID == id).Select(a => a.ActorID).ToList();
+            
+
+		}
+	}
 }

@@ -1,12 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MoviePoint.Models;
+using MoviePoint.Repository;
 
 namespace MoviePoint.Controllers
 {
 	public class MovieController : Controller
 	{
-		public IActionResult Index()
+        IMovieRepository movieRepository;
+
+        public MovieController
+            (IMovieRepository _movRepo)
+        {
+            movieRepository = _movRepo; 
+        }
+
+        public IActionResult Index()
 		{
-			return View();
+            List<Movie> movies = movieRepository.GetAll();
+			return View(movies);
 		}
 	}
 }

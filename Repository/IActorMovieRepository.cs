@@ -9,5 +9,7 @@ namespace MoviePoint.Repository
         void Insert(Actor_Movie actor_Movie);
         void Update(int id, Actor_Movie actor_Movie);
         void Delete(int id);
-    }
+        List<int> ActorById(int id);
+
+	}
 }
