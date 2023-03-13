@@ -5,6 +5,7 @@
         Action=1,
         Drama,
         Comedy,
-        Cartoon
-    }
+        Cartoon,
+		ScienceFiction
+	}
 }
