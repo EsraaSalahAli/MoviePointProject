@@ -49,7 +49,7 @@ namespace MoviePoint.Controllers
                 if (result.Succeeded)
                 {
                     //assign user to Admin Role
-                    await userManager.AddToRoleAsync(userModel, "Admin");//insert row UserRole
+                    await userManager.AddToRoleAsync(userModel, "User");//insert row UserRole
                     //create cookie
                     //???
                     List<Claim> addClaim = new List<Claim>();
