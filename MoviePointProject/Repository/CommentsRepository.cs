@@ -16,7 +16,13 @@ namespace MoviePoint.Repository
             return context.Comments.ToList();
         }
 
-        public Comment GetById(int id)
+		public List<Comment> GetComments(int MovieId)
+        {
+            return context.Comments.Where(c=>c.movieID== MovieId).ToList();
+        }
+
+
+		public Comment GetById(int id)
         {
             return context.Comments.FirstOrDefault(c => c.ID == id);
         }

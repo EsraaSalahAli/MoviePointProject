@@ -41,13 +41,13 @@
 					<p>@Model.Movie.Description</p>
 					<div class="detail-author">
 						<div class="row flexbox-center">
-							<div class="col-lg-6 text-lg-left text-center">
+							@*<div class="col-lg-6 text-lg-left text-center">
 								<div class="details-author">
 									<h4>By Admin:</h4>
 									<img src="/img/author.png" alt="" />
 								</div>
-							</div>
-							<div class="col-lg-6 text-lg-right text-center">
+							</div>*@
+							<div class="col-lg-6 text-lg-left text-center">
 								<div class="details-author">
 									<h4>Share:</h4>
 									<a href="#"><i class="icofont icofont-social-facebook"></i></a>
@@ -66,7 +66,7 @@
 						<h2>Leave a Reply</h2>
 						<form action="#">
 							<div class="row">
-								<div class="col-lg-4">
+								@*<div class="col-lg-4">
 									<div class="select-container">
 										<input type="text" placeholder="Name" />
 										<i class="icofont icofont-ui-user"></i>
@@ -83,7 +83,7 @@
 										<input type="text" placeholder="Phone" />
 										<i class="icofont icofont-phone"></i>
 									</div>
-								</div>
+								</div>*@
 								
 								<div class="col-lg-12">
 									<div class="textarea-container">
@@ -97,9 +97,9 @@
 					<div class="details-comment">
 						@*<button onclick="SendComment()"class="theme-btn theme-btn2">Post Comment</button>*@
 						<button class="theme-btn theme-btn2" onclick="SendComment()">Post Comment</button>
-						<p id="AllMsg">You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
-					</div>
-					<div class="details-thumb">
+@*						<p id="AllMsg">You may use these HTML tags and attributes: You may use these HTML tags and attributes: You may use these HTML tags and attributes: </p>
+*@					</div>
+@*					<div class="details-thumb">
 						<div class="details-thumb-prev">
 							<div class="thumb-icon">
 								<i class="icofont icofont-simple-left"></i>
@@ -119,45 +119,25 @@
 							</div>
 						</div>
 					</div>
-				</div>
+*@				</div>
 			</div>
 			<div class="col-lg-3">
 				<div class="blog-sidebar">
-					@*<h4>Recent Posts</h4>
-					<ul>
-						<li><a href="#">Transformers: The Last Knight</a></li>
-						<li><a href="#">Duis aute irure dolor in reprehenderit in voluptate</a></li>
-						<li><a href="#">Nostrud exercitation ullamco laboris</a></li>
-						<li><a href="#">Magnam aliquam quaerat voluptatem</a></li>
-						<li><a href="#">Magnam aliquam quaerat voluptatem</a></li>
-						<li><a href="#">Excepteur sint occaecat cupidatat proi</a></li>
-					</ul>*@
 					<h4>Recent Comments</h4>
 					<ul id="AllComment">
-
+						@foreach(var item in Model.Comments)
+						{
+							<li>@item.comment <br /><span style="color:#eb315a;font-size:10px;">@item.CommentDate.ToString("MMM dd yyyy - HH:mm tt") </span></li>
+						}
 						@*<li><a href="#">admin on Mask Man</a></li>
 						<li><a href="#">admin on Angle Pori</a></li>
 						<li><a href="#">admin on The Man</a></li>
 						<li><a href="#">admin on WP Devil</a></li>*@
 					</ul>
-					@*<h4>Categories</h4>
-					<ul>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Feature</a></li>
-						<li><a href="#">Media</a></li>
-						<li><a href="#">Movie</a></li>
-						<li><a href="#">Trailers_video</a></li>
-						<li><a href="#">Uncategorized</a></li>
-					</ul>
-					<h4>Archives</h4>
-					<ul>
-						<li><a href="#">February 2018</a></li>
-						<li><a href="#">January 2018</a></li>
-						<li><a href="#">March 2018</a></li>
-						<li><a href="#">April 2018</a></li>
-					</ul>*@
 					<div class="portfolio-sidebar">
 						<img src="/img/sidebar/sidebar1.png" alt="sidebar" />
+						<img src="/img/sidebar/sidebar2.png" alt="sidebar" />
+					<img src="/img/sidebar/sidebar4.png" alt="sidebar" />
 					</div>
 				</div>
 			</div>
@@ -217,15 +197,12 @@
 		//});
 		//}
 
-
-
 		hub.on("NewComment", function (c) {
 			console.log("from NewComment method " + c.comment + " " + c.CommentDate + " " + c.userID + " " + c.movieID);
-			$("#AllMsg").append("<li>" + c.comment + " " + c.CommentDate + " " + c.userID + "</li>");
+			//$("#AllMsg").append("<li>" + c.comment + " " + c.CommentDate + " " + c.userID + "</li>");
+			$("#AllComment").append("<li>" + c.comment +"<br/><span style='color:#eb315a;font-size:10px;'>Now</span></li>");
 
 		});
-
-
 
 		console.log("berfor");
 
@@ -240,9 +217,9 @@
 			let comment = {
 				'comt': com,
 				'movieid': @Model.Movie.Id,
-				'userid': "@Model.UserID.ToString()", //@Model.UserID,
+				'userid': "@Model.UserID.ToString()", //Model.UserID,
 				'commentdate': date.toISOString()
-						};
+			};
 
 			// Invoke the hub.WriteComment method with the Comment object
 			//hub.invoke("WriteComment",comment);
@@ -252,13 +229,6 @@
 			console.log(date.toISOString().toString());
 			hub.invoke("WriteComment", com, "@Model.Movie.Id.ToString()", "@Model.UserID.ToString()", date.toISOString().toString())// @Model.UserID
 		}
-
-
-
-		
-	
-
-		
 	</script>
 
 }

@@ -129,21 +129,80 @@ namespace MoviePoint.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            Cinema cinema = cinemaRepository.GetById(id);
-            return View(cinema);
+            var movie = movieRepository.GetById(id);
+
+            MoiveViewModel NewMoive =
+                new MoiveViewModel();
+            NewMoive.Name= movie.Name;
+            NewMoive.Description = movie.Description;
+            NewMoive.Price = movie.Price;
+            NewMoive.ImageUrl = movie.ImageUrl;
+            NewMoive.StartDate = movie.StartDate;
+            NewMoive.EndtDate = movie.EndtDate;
+            NewMoive.Category = movie.Category;
+            NewMoive.videoURL = movie.videoURL;
+            NewMoive.CinemaID = movie.CinemaID;
+            NewMoive.ProducerID = movie.ProducerID;
+
+            // NewMoive.ActorsObj = actorRepository.GetAll();
+            NewMoive.cinemas = cinemaRepository.GetAll();
+            NewMoive.producers = producerRepository.GetAll();
+            NewMoive.Actor_Movies = actormovieRepository.GetAll();
+            NewMoive.AllActors = actorRepository.GetAll();
+
+            return View(NewMoive);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Cinema newCinema, [FromRoute] int id)
+        public IActionResult Update(MoiveViewModel moiveViewModel, [FromRoute] int id)
         {
+            Movie oldMovie = movieRepository.GetById(id);
+
             if (ModelState.IsValid == true)
             {
-                cinemaRepository.Update(id, newCinema);
+                oldMovie.Name = moiveViewModel.Name;
+                oldMovie.Description = moiveViewModel.Description;
+                oldMovie.Price = moiveViewModel.Price;
+                oldMovie.ImageUrl = moiveViewModel.ImageUrl;
+                oldMovie.StartDate = moiveViewModel.StartDate;
+                oldMovie.EndtDate = moiveViewModel.EndtDate;
+                oldMovie.ProducerID = moiveViewModel.ProducerID;
+                oldMovie.CinemaID = moiveViewModel.CinemaID;
+                oldMovie.Category = moiveViewModel.Category;
+                oldMovie.videoURL = moiveViewModel.videoURL;
+
+                moiveViewModel.AllActors = actorRepository.GetAll();
+                moiveViewModel.cinemas = cinemaRepository.GetAll();
+                moiveViewModel.producers = producerRepository.GetAll();
+                moiveViewModel.Actor_Movies = actormovieRepository.GetAll();
+
+
+                movieRepository.Update(id,oldMovie);
+
+                List<Actor> actors = new List<Actor>();
+                foreach (var ctorid in moiveViewModel.Actors)
+                {
+
+                    actors.Add(actorRepository.GetById(ctorid));
+
+                }
+                moiveViewModel.ActorsObj = actors;
+
+
+                foreach (var actorId in moiveViewModel.Actors)
+                {
+                    var newActorMovie = new Actor_Movie()
+                    {
+                        MovieID = oldMovie.Id,
+                        ActorID = actorId
+                    };
+                    actormovieRepository.Update(id,newActorMovie);
+                }
                 return RedirectToAction("Index");
             }
-            return View(newCinema);
 
+            return View(moiveViewModel);
         }
 
         public IActionResult Delete(int id)

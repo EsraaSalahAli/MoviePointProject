@@ -9,5 +9,7 @@ namespace MoviePoint.ViewModel
 		//public IdentityUser IdentityUser { get; set; }
 		//public String UserName { get; set; }	
 		public String UserID { get; set; }
+
+		public List<Comment>? Comments { get; set; }
 	}
 }
