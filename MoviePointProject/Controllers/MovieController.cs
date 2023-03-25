@@ -14,7 +14,7 @@ namespace MoviePoint.Controllers
 	{
 		IMovieRepository movieRepository;
         IActorRepository actorRepository;
-
+        ICommentsRepository commentsRepository;
         IProducerRepository producerRepository;
         ICinemaRepository cinemaRepository;
         IActorMovieRepository actormovieRepository;
@@ -22,13 +22,14 @@ namespace MoviePoint.Controllers
 
 
         public MovieController
-			(IMovieRepository _movRepo, IActorRepository _actRepo, IProducerRepository _proRepo, ICinemaRepository _cinemaRepo, IActorMovieRepository _actmovieRepo)
+			(ICommentsRepository _comRepo,IMovieRepository _movRepo, IActorRepository _actRepo, IProducerRepository _proRepo, ICinemaRepository _cinemaRepo, IActorMovieRepository _actmovieRepo)
 		{
             movieRepository = _movRepo;
             actorRepository = _actRepo;
             producerRepository = _proRepo;
             cinemaRepository = _cinemaRepo;
             actormovieRepository= _actmovieRepo;
+            commentsRepository = _comRepo;
         }
 
 		public IActionResult Index()
@@ -39,6 +40,8 @@ namespace MoviePoint.Controllers
 
 		public IActionResult Details(int id)
 		{
+            List<Comment> comments = commentsRepository.GetComments(id);
+			ViewData["Comments"] = comments;
 			MovieDetailsViewModel movieModel = new MovieDetailsViewModel();
 			Movie movie = movieRepository.GetMovieWithDetails(id);
 			movieModel.MovieName = movie.Name;

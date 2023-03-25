@@ -9,13 +9,13 @@ namespace MoviePoint.Controllers
     [Authorize(Roles="Admin")]
     public class RoleController : Controller
     {
-		private readonly RoleManager<IdentityRole> roleManager;
+		//private readonly RoleManager<IdentityRole> roleManager;
 		private readonly UserManager<IdentityUser> userManager;
 		MoviePointContext context = new MoviePointContext();
 
-		public RoleController(RoleManager<IdentityRole> RoleManager,UserManager<IdentityUser> UserManager)
+		public RoleController(UserManager<IdentityUser> UserManager)
         {
-            roleManager = RoleManager;
+            //roleManager = RoleManager;
             userManager = UserManager;
 
 		}
@@ -59,7 +59,7 @@ namespace MoviePoint.Controllers
 			roleView.Users = context.Users.ToList();
 			roleView.Roles = context.Roles.ToList();
 
-			return View();
+			return View(roleView);
         }
 
         [HttpPost]
@@ -71,12 +71,16 @@ namespace MoviePoint.Controllers
 
 				roleModel.UserId = RoleVM.UserID;
 				roleModel.RoleId = RoleVM.RoleID;
-                IdentityUser SelectedUser = RoleVM.Users.FirstOrDefault(u => u.Id == RoleVM.UserID);
-				IdentityResult result = await userManager.AddToRoleAsync(SelectedUser, RoleVM.RoleName);
-				//await roleManager. CreateAsync(roleModel);//unique
-				if (result.Succeeded)
+                IdentityUser SelectedUser = context.Users.FirstOrDefault(u => u.Id == RoleVM.UserID);
+                string RoleName = context.Roles.FirstOrDefault(r => r.Id == roleModel.RoleId).Name;
+				IdentityResult result = await userManager.AddToRoleAsync(SelectedUser, RoleName);
+
+                //context.UserRoles.Add(roleModel);
+                //context.SaveChanges();
+                //await roleManager. CreateAsync(roleModel);//unique
+                if (result.Succeeded)
                 {
-                    return View();
+                    return View("Home");
                 }
                 else
                 {
