@@ -19,9 +19,13 @@
 
 	<section class="portfolio-area pt-60">
 		<div class="container">
+		@if (User.IsInRole("Admin"))
+		{
 			<div class="mx-auto text-center col-md-4">
 				<a class="theme-btn" style="width:100%;" asp-action="Insert" asp-controller="Producer">Add New Producer</a>
 			</div>
+		}
+		
 			<div class="row portfolio-item">
 				@foreach (var item in Model)
 				{
@@ -34,10 +38,14 @@
 								<h2 class="my-3">@item.FullName</h2>
 								<p class="mb-3">@item.Bio</p>
 							</div>
+						@if (User.IsInRole("Admin"))
+						{
 							<div class="d-flex justify-content-around">
 								<a class="theme-btn" asp-action="Update" asp-controller="Producer" asp-route-id="@item.Id">Edit</a>
 								<a class="theme-btn" asp-action="Delete" asp-controller="Producer" asp-route-id="@item.Id">Delete</a>
 							</div>
+						}
+						
 						</div>
 
 					</div>

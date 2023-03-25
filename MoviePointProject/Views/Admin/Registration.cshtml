@@ -2,7 +2,7 @@
 
 @{
     Layout = "_NavAndFooterLayout";
-    ViewData["Title"] = "Registration";
+    ViewData["Title"] = "AdminSignUp";
 }
 
 
@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row" style="position:relative">
         <div class="col-md-5 mb-2 mx-auto">
-            <form asp-action="Registration" asp-controller="Account" style="position: relative;top: 50px;">
+            <form asp-action="Registration" asp-controller="Admin" style="position: relative;top: 50px;">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="UserName" class="control-label"></label>

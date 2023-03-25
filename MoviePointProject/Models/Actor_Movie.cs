@@ -12,9 +12,9 @@ namespace MoviePoint.Models
         [ForeignKey("Actor")]
         public int ActorID { get; set; }
 
-        public virtual Movie Movie { get; set; }
+        public virtual Movie? Movie { get; set; }
 
-        public virtual Actor Actor { get; set; }
+        public virtual Actor? Actor { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using MoviePoint.ViewModel.Enum;
+﻿using MoviePoint.logic.Models;
+using MoviePoint.ViewModel.Enum;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoviePoint.Models
@@ -11,7 +12,7 @@ namespace MoviePoint.Models
 
         public string Description { get; set; }
 
-        public double Price { get; set; }
+        public int Price { get; set; }
 
         public string ImageUrl { get; set; }
 
@@ -34,5 +35,6 @@ namespace MoviePoint.Models
         [ForeignKey("Producer")]
         public int ProducerID { get; set; }
        public virtual List<Comment> comments { get; set; }
-    }
+		public virtual Tickets Tickets { get; set; }
+	}
 }

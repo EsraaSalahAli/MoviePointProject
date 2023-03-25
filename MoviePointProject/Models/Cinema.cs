@@ -1,4 +1,6 @@
-﻿namespace MoviePoint.Models
+﻿using MoviePoint.logic.Models;
+
+namespace MoviePoint.Models
 {
     public class Cinema
     {
@@ -13,5 +15,7 @@
         public string Location { get; set; }
 
         public virtual List<Movie>? Movies { get; set; }
-    }
+		public virtual Tickets? Tickets { get; set; }
+
+	}
 }

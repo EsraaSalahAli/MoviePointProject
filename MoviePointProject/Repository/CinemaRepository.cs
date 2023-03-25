@@ -20,6 +20,10 @@ namespace MoviePoint.Repository
         {
             return context.Cinemas.FirstOrDefault(c => c.Id == id);
         }
+        public Cinema GetByName(string Name)
+        {
+            return context.Cinemas.FirstOrDefault(c => c.Name == Name);
+        }
         public void Insert(Cinema cinema)
         {
             context.Cinemas.Add(cinema);

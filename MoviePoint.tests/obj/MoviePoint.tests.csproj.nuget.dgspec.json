@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePoint.tests\\MoviePoint.tests.csproj": {}
+    "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePoint.tests\\MoviePoint.tests.csproj": {}
   },
   "projects": {
-    "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePoint.tests\\MoviePoint.tests.csproj": {
+    "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePoint.tests\\MoviePoint.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePoint.tests\\MoviePoint.tests.csproj",
+        "projectUniqueName": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePoint.tests\\MoviePoint.tests.csproj",
         "projectName": "MoviePoint.tests",
-        "projectPath": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePoint.tests\\MoviePoint.tests.csproj",
-        "packagesPath": "C:\\Users\\hadui\\.nuget\\packages\\",
-        "outputPath": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePoint.tests\\obj\\",
+        "projectPath": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePoint.tests\\MoviePoint.tests.csproj",
+        "packagesPath": "C:\\Users\\AL-FAJR\\.nuget\\packages\\",
+        "outputPath": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePoint.tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\hadui\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\AL-FAJR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,15 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\ITI materials\\Mohamed\\Package Source": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePointProject\\MoviePoint.logic.csproj": {
-                "projectPath": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePointProject\\MoviePoint.logic.csproj"
+              "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePointProject\\MoviePoint.logic.csproj": {
+                "projectPath": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePointProject\\MoviePoint.logic.csproj"
               }
             }
           }
@@ -78,25 +74,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePointProject\\MoviePoint.logic.csproj": {
+    "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePointProject\\MoviePoint.logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePointProject\\MoviePoint.logic.csproj",
+        "projectUniqueName": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePointProject\\MoviePoint.logic.csproj",
         "projectName": "MoviePoint.logic",
-        "projectPath": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePointProject\\MoviePoint.logic.csproj",
-        "packagesPath": "C:\\Users\\hadui\\.nuget\\packages\\",
-        "outputPath": "D:\\هدير\\ITI\\Asp.net Core MVC\\New folder\\MoviePointProject\\obj\\",
+        "projectPath": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePointProject\\MoviePoint.logic.csproj",
+        "packagesPath": "C:\\Users\\AL-FAJR\\.nuget\\packages\\",
+        "outputPath": "D:\\ITI materials\\ASP.Net MVC\\project\\New folder\\MoviePointUnitTesting\\MoviePointProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\hadui\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\AL-FAJR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -104,7 +96,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\ITI materials\\Mohamed\\Package Source": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -123,13 +115,13 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.AspNet.Identity.Core": {
+            "Microsoft.AspNetCore.Identity": {
               "target": "Package",
-              "version": "[2.2.3, )"
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.AspNetCore.SignalR.Core": {
               "target": "Package",
@@ -137,13 +129,13 @@
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.4, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -169,7 +161,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

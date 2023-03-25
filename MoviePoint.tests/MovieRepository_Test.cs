@@ -55,7 +55,7 @@ namespace MoviePoint.tests
 			Movie newMovie = new Movie
 			{
 				Name = "Test Movie",
-				Price = 9.99,
+				Price = 100,
 				ProducerID = 1,
 				StartDate = DateTime.Now,
 				EndtDate = DateTime.Now.AddDays(7),

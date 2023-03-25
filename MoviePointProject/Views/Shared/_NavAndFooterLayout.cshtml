@@ -39,17 +39,32 @@
 					<form action="#">
 						<select>
 							<option value="Movies">Movies</option>
-							<option value="Movies">Movies</option>
-							<option value="Movies">Movies</option>
+							<option value="Actors">Actors</option>
+							<option value="Cinemas">Cinemas</option>
 						</select>
 						<input type="text" />
 						<button><i class="icofont icofont-search"></i></button>
 					</form>
 					<ul>
-						<li><a href="#">Welcome Guest!</a></li>
-						<li><a asp-action="Login" asp-controller="Account">Login</a></li>
-						<li><a asp-action="Registration" asp-controller="Account">Sign Up</a></li>
-						<li><a asp-action="signOut" asp-controller="Account">Sign Out</a></li>
+						@if(User.IsInRole("Admin"))
+						{
+							<li><a href="#">Welcome @User.Identity.Name</a></li>
+							<li><a asp-action="Registration" asp-controller="Admin">Sign Up</a></li>
+							<li><a asp-action="signOut" asp-controller="Account">Sign Out</a></li>
+						}
+						else if (User.Identity.IsAuthenticated)
+						{
+							<li><a href="#">Welcome @User.Identity.Name</a></li>
+							<li><a asp-action="signOut" asp-controller="Account">Sign Out</a></li>
+						}
+						else
+						{
+							<li><a href="#">Welcome</a></li>
+
+							<li><a asp-action="Login" asp-controller="Account">Login</a></li>
+							<li><a asp-action="Registration" asp-controller="Account">Sign Up</a></li>
+						}
+						
 					</ul>
 				</div>
 				<div class="menu-area">
@@ -65,14 +80,16 @@
 
 
 							<li>
-								<a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-								<ul>
+								<a asp-action="Index" asp-controller="Tickets">All Tickets</a>
+								@*<ul>
 									<li><a href="blog-details.html">Blog Details</a></li>
 									<li><a href="movie-details.html">Movie Details</a></li>
-								</ul>
+								</ul>*@
 							</li>
-							<li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
-						</ul>
+@*						<li><a asp-action="Add" asp-controller="Tickets" class="theme-btn"><i class="icofont icofont-ticket"></i> Tickets</a></li>
+*@
+							<li class="theme-btn text-center"><a asp-action="Add" asp-controller="Tickets"><i class="icofont icofont-ticket"></i>Tickets</a></li>
+					</ul>
 					</div>
 				</div>
 			</div>

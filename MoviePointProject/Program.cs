@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MoviePoint.Hubs;
+using MoviePoint.logic.Repository;
 using MoviePoint.Models;
 using MoviePoint.Repository;
 using System.Security.Principal;
@@ -18,9 +19,9 @@ namespace MoviePoint
 
             builder.Services.AddDbContext<MoviePointContext>(option =>
             {
-                option.UseSqlServer(builder.Configuration.GetConnectionString("Esraa"));
+                //option.UseSqlServer(builder.Configuration.GetConnectionString("Esraa"));
                 //option.UseSqlServer(builder.Configuration.GetConnectionString("Hadeer Salah"));
-                //option.UseSqlServer(builder.Configuration.GetConnectionString("Ghada"));
+                option.UseSqlServer(builder.Configuration.GetConnectionString("Ghada"));
 
                 //option.UseSqlServer(builder.Configuration.GetConnectionString("Asmaa"));
                 //option.UseSqlServer(builder.Configuration.GetConnectionString("Alaa"));
@@ -63,8 +64,10 @@ namespace MoviePoint
             builder.Services.AddScoped<IMovieRepository, MovieRepository>();
             builder.Services.AddScoped<IActorMovieRepository, ActorMovieRepository>();
             builder.Services.AddScoped<ICommentsRepository, CommentsRepository>();
+			builder.Services.AddScoped<ITicketsRepository, TicketsRepository>();
+			
 
-            var app = builder.Build();
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

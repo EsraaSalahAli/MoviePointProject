@@ -9,5 +9,6 @@ namespace MoviePoint.Repository
         void Insert(Cinema cinema);
         void Update(int id, Cinema cinema);
         void Delete(int id);
+        Cinema GetByName(string Name);
     }
 }

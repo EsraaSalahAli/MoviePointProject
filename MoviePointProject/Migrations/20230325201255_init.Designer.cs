@@ -9,10 +9,10 @@ using MoviePoint.Models;
 
 #nullable disable
 
-namespace MoviePoint.Migrations
+namespace MoviePoint.logic.Migrations
 {
     [DbContext(typeof(MoviePointContext))]
-    [Migration("20230320175144_init")]
+    [Migration("20230325201255_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace MoviePoint.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
+                .HasAnnotation("ProductVersion", "7.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -360,8 +360,8 @@ namespace MoviePoint.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProducerID")
                         .HasColumnType("int");
@@ -405,6 +405,46 @@ namespace MoviePoint.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Producers");
+                });
+
+            modelBuilder.Entity("MoviePoint.logic.Models.Tickets", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CinemaID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MovieID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CinemaID")
+                        .IsUnique();
+
+                    b.HasIndex("MovieID")
+                        .IsUnique();
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -480,7 +520,7 @@ namespace MoviePoint.Migrations
             modelBuilder.Entity("MoviePoint.Models.Comment", b =>
                 {
                     b.HasOne("MoviePoint.Models.Movie", "movie")
-                        .WithMany()
+                        .WithMany("comments")
                         .HasForeignKey("movieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -515,6 +555,33 @@ namespace MoviePoint.Migrations
                     b.Navigation("Producer");
                 });
 
+            modelBuilder.Entity("MoviePoint.logic.Models.Tickets", b =>
+                {
+                    b.HasOne("MoviePoint.Models.Cinema", "Cinema")
+                        .WithOne("Tickets")
+                        .HasForeignKey("MoviePoint.logic.Models.Tickets", "CinemaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MoviePoint.Models.Movie", "Movie")
+                        .WithOne("Tickets")
+                        .HasForeignKey("MoviePoint.logic.Models.Tickets", "MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cinema");
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("MoviePoint.Models.Actor", b =>
                 {
                     b.Navigation("Actor_Movies");
@@ -523,11 +590,19 @@ namespace MoviePoint.Migrations
             modelBuilder.Entity("MoviePoint.Models.Cinema", b =>
                 {
                     b.Navigation("Movies");
+
+                    b.Navigation("Tickets")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MoviePoint.Models.Movie", b =>
                 {
                     b.Navigation("Actor_Movies");
+
+                    b.Navigation("Tickets")
+                        .IsRequired();
+
+                    b.Navigation("comments");
                 });
 
             modelBuilder.Entity("MoviePoint.Models.Producer", b =>

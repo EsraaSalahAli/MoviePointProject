@@ -9,7 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MoviePoint.Controllers
 {
-	[Authorize]
+	
 	public class MovieController : Controller
 	{
 		IMovieRepository movieRepository;
@@ -86,7 +86,7 @@ namespace MoviePoint.Controllers
 
                 movie.Name = moiveViewModel.Name;
                 movie.Description = moiveViewModel.Description;
-                movie.Price = moiveViewModel.Price;
+                movie.Price =(int) moiveViewModel.Price;
                 movie.ImageUrl = moiveViewModel.ImageUrl;
                 movie.StartDate = moiveViewModel.StartDate;
                 movie.EndtDate = moiveViewModel.EndtDate;
@@ -166,7 +166,7 @@ namespace MoviePoint.Controllers
             {
                 oldMovie.Name = moiveViewModel.Name;
                 oldMovie.Description = moiveViewModel.Description;
-                oldMovie.Price = moiveViewModel.Price;
+                oldMovie.Price = (int)moiveViewModel.Price;
                 oldMovie.ImageUrl = moiveViewModel.ImageUrl;
                 oldMovie.StartDate = moiveViewModel.StartDate;
                 oldMovie.EndtDate = moiveViewModel.EndtDate;

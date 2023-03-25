@@ -10,7 +10,7 @@ namespace MoviePoint.ViewModel
 
 		public string MovieDescription { get; set; }
 
-		public double MoviePrice { get; set; }
+		public int MoviePrice { get; set; }
 
 		public string MovieImageUrl { get; set; }
 

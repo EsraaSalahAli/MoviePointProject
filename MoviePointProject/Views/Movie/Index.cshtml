@@ -19,9 +19,13 @@
 
 <section class="portfolio-area pt-60">
 	<div class="container">
-		<div class="mx-auto text-center col-md-4">
-			<a class="theme-btn" style="width:100%;" asp-action="Insert" asp-controller="Movie">Add New Movie</a>
-		</div>
+		@if(User.IsInRole("Admin"))
+		{
+			<div class="mx-auto text-center col-md-4">
+				<a class="theme-btn" style="width:100%;" asp-action="Insert" asp-controller="Movie">Add New Movie</a>
+			</div>
+		}
+		
 		<div class="row portfolio-item">
 			@foreach (var item in Model)
 			{
@@ -43,10 +47,14 @@
 								<h4>180k voters</h4>
 							</div>
 						</div>
-						<div class="d-flex justify-content-around">
-							<a class="theme-btn" asp-action="Update" asp-controller="Movie" asp-route-id="@item.Id">Edit</a>
-							<a class="theme-btn" asp-action="Delete" asp-controller="Movie" asp-route-id="@item.Id">Delete</a>
-						</div>
+						@if (User.IsInRole("Admin"))
+						{
+							<div class="d-flex justify-content-around">
+								<a class="theme-btn" asp-action="Update" asp-controller="Movie" asp-route-id="@item.Id">Edit</a>
+								<a class="theme-btn" asp-action="Delete" asp-controller="Movie" asp-route-id="@item.Id">Delete</a>
+							</div>
+						}
+						
 					</div>
 
 				</div>
@@ -72,7 +80,7 @@
 					{
 						<div class="video-area">
 							<img src="@item2.ImageUrl" alt="video" />
-							<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+							<a href="@item2.videoURL" class="popup-youtube">
 								<i class="icofont icofont-ui-play"></i>
 							</a>
 						</div>

@@ -21,7 +21,11 @@ namespace MoviePoint.Repository
         {
             return context.Movies.FirstOrDefault(c => c.Id == id);
         }
-		public Movie GetMovieWithDetails(int id)
+        public Movie GetByName(string Name)
+        {
+            return context.Movies.FirstOrDefault(c => c.Name == Name);
+        }
+        public Movie GetMovieWithDetails(int id)
         {
             return context.Movies.Include(m => m.Producer).Include(m => m.Cinema).Include(m => m.Actor_Movies).ThenInclude( m=> m.Actor).FirstOrDefault(m => m.Id == id);
         }
